@@ -1,6 +1,7 @@
 package app.service;
 
-import app.dao.RoleDaoImpl;
+import app.dao.RoleDao;
+//import app.dao.RoleDaoImpl;
 import app.dao.UserDao;
 import app.models.Role;
 import app.models.User;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -17,10 +19,10 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
-    private RoleDaoImpl roleDao;
+    private RoleDao roleDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, RoleDaoImpl roleDao) {
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
         this.roleDao = roleDao;
     }
@@ -36,35 +38,36 @@ public class UserServiceImpl implements UserService {
 //        set.add(role2);
 
         user.setRoles(set);
-        userDao.create(user);
+        userDao.save(user);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return (List<User>) userDao.findAll();
     }
 
     @Transactional
     @Override
     public void update(User user) {
-        User old = userDao.findUserById(user.getId());
+        Optional<User> oldOptional = userDao.findById(user.getId());
+        User old = oldOptional.get();
 //        old.setLogin(user.getLogin());
 //        old.setPassword(user.getPassword());
         user.setRoles(old.getRoles());
-        userDao.update(user);
+        userDao.save(user);
     }
 
     @Transactional
     @Override
     public void delete(long id) {
-        userDao.delete(id);
+        userDao.deleteById(id);
     }
 
     @Transactional
     @Override
     public User findUserById(long id) {
-        return userDao.findUserById(id);
+        return userDao.findById(id).get();
     }
 
     @Transactional
