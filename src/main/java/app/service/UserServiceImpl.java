@@ -33,10 +33,6 @@ public class UserServiceImpl implements UserService {
         Set<Role> set = new HashSet<>();
         Role role1 = roleDao.findByRole("USER");
         set.add(role1);
-
-//        Role role2 = roleDao.findByRole("ADMIN");
-//        set.add(role2);
-
         user.setRoles(set);
         userDao.save(user);
     }
@@ -52,8 +48,6 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         Optional<User> oldOptional = userDao.findById(user.getId());
         User old = oldOptional.get();
-//        old.setLogin(user.getLogin());
-//        old.setPassword(user.getPassword());
         user.setRoles(old.getRoles());
         userDao.save(user);
     }
