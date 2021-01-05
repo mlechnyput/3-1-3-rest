@@ -31,6 +31,7 @@ public class AdminController {
     @GetMapping("/{id}")
     public String getEdit(Model model, @PathVariable Long id) {
         User user = userService.findUserById(id);
+
         model.addAttribute("user", user);
         return "/edit";
     }

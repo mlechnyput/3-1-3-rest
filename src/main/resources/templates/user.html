@@ -22,14 +22,18 @@
         <thead>
         <h1>Page for User</h1>
         <th>Id</th>
-        <th>Login</th>
-        <th>Password</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Email</th>
         </thead>
         <tr>
             <tbody>
             <td><b th:text="*{id}" id="id"></b></td>
-            <td><b th:text="*{login}" id="login"></b></td>
-            <td><b th:text="*{password}" id="ppaasswwoorrdd"></b></td>
+            <td><b th:text="*{firstname}" id="firstn"></b></td>
+            <td><b th:text="*{lastname}" id="lastn"></b></td>
+            <td><b th:text="*{age}" id="age"></b></td>
+            <td><b th:text="*{email}" id="email"></b></td>
             </tbody>
         </tr>
     </table>

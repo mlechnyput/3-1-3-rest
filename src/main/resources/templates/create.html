@@ -21,14 +21,20 @@
     <tr>
         <thead>
         <h1 >Create User</h1>
-        <th>Login</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Email</th>
         <th>Password</th>
         <th>Action</th>
         </thead>
         <tbody>
         <form th:method="post" th:action="@{/admin}" th:object="${user}">
-            <th><input required type="text" th:field="*{login}" id="login"/></th>
-            <th><input required type="text" th:field="*{password}" id="password"/></th>
+            <th><input required type="text" th:field="*{firstname}" id="td_firstname"/></th>
+            <th><input required type="text" th:field="*{lastname}" id="td_lastname"/></th>
+            <th><input required type="text" th:field="*{age}" id="td_age"/></th>
+            <th><input required type="text" th:field="*{email}" id="td_email"/></th>
+            <th><input required type="password" th:field="*{password}" id="td_password"/></th>
             <th><input type="submit" value="Create"/></th>
         </form>
         </tbody>
