@@ -49,28 +49,15 @@ public class AdminController {
         return "adminuser";
     }
 
-    @GetMapping("/{id}")
-    public String getEdit(Model model, @PathVariable Long id) {
-        User user = userService.findUserById(id);
-
-        model.addAttribute("user", user);
-        return "/edit";
-    }
-
-    @GetMapping("/new")
-    public String openPageNew(@ModelAttribute("user") User user) {
-        return "/create";
-    }
-
     @PostMapping
     public String createNewUser(@ModelAttribute("user") User user) {
-        userService.create(user);
+        userService.createAndUpdate(user);
         return "redirect:/admin/all";
     }
 
     @PostMapping("/{id}")
     public String postEdit(@ModelAttribute() User user) {
-        userService.update(user);
+        userService.createAndUpdate(user);
         return "redirect:all";
     }
 
@@ -79,10 +66,4 @@ public class AdminController {
         userService.delete(user.getId());
         return "redirect:/admin/all";
     }
-
-//    @PostMapping("/del/{id}")
-//    public String deleteUserById(@PathVariable Long id) {
-//        userService.delete(id);
-//        return "redirect:/admin/all";
-//    }
 }

@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void create(User user) {
+    public void createAndUpdate(User user) {
         Set<Role> set = new HashSet<>();
         if (user.isIsadmin()) {
             Role roleAdmin = roleDao.findByRole("ADMIN");
@@ -51,18 +51,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return (List<User>) userDao.findAll();
-    }
-
-    @Transactional
-    @Override
-    public void update(User user) {
-        Optional<User> oldOptional = userDao.findById(user.getId());
-        User old = oldOptional.get();
-        user.setRoles(old.getRoles());
-
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-
-        userDao.save(user);
     }
 
     @Transactional
