@@ -23,8 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userDao.findUserByEmail(login);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userDao.findUserByEmail(email);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));

@@ -1,5 +1,6 @@
 package app.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -37,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").successHandler(new UserSuccessHandler()).permitAll()
+                .formLogin().loginPage("/")
+                .loginProcessingUrl("/comein").usernameParameter("emailushka").passwordParameter("passwordik")
+                .successHandler(new UserSuccessHandler()).permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

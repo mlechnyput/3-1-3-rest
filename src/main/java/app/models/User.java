@@ -36,6 +36,11 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @Transient
+    private boolean isadmin;
+    @Transient
+    private boolean isuser;
+
     public User() {
 
     }
@@ -63,6 +68,33 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(Long id, String firstname, String lastname, int age, String email, String password, Set<Role> roles, boolean isadmin) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.isadmin = isadmin;
+    }
+
+    public boolean isIsuser() {
+        return isuser;
+    }
+
+    public void setIsuser(boolean isuser) {
+        this.isuser = isuser;
+    }
+
+    public boolean isIsadmin() {
+        return isadmin;
+    }
+
+    public void setIsadmin(boolean isadmin) {
+        this.isadmin = isadmin;
     }
 
     public Long getId() {

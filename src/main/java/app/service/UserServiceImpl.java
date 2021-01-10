@@ -34,12 +34,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void create(User user) {
         Set<Role> set = new HashSet<>();
-        Role role1 = roleDao.findByRole("USER");
-        set.add(role1);
+        if (user.isIsadmin()) {
+            Role roleAdmin = roleDao.findByRole("ADMIN");
+            set.add(roleAdmin);
+        }
+        if (user.isIsuser()){
+            Role roleUser = roleDao.findByRole("USER");
+            set.add(roleUser);
+        }
         user.setRoles(set);
-
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-
         userDao.save(user);
     }
 
