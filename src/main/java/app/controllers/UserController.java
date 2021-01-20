@@ -14,14 +14,8 @@ import java.security.Principal;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping
-    public String user(Principal principal, Model model) {
-        String email= principal.getName();
-        User user = userService.findUserByEmail(email);
-        model.addAttribute("user", user);
+    public String user() {
         return "user";
     }
 

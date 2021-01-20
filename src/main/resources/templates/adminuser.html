@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -18,11 +18,12 @@
 
 <nav class="navbar navbar-dark sticky-top bg-dark">
     <span class="navbar-brand">
-        <b th:text="${user.email}"></b>
-        <a>with roles:</a>
-        <th:block th:each="ro:*{user.roles}">
-            <a th:text="${ro.getRole()}"></a>
-        </th:block>
+        <div sec:authorize="isAuthenticated()">
+            <b sec:authentication="name"></b>
+            <a>with roles:</a>
+            <a sec:authentication="principal.authorities"></a>
+        </div>
+
     </span>
     <ul class="navbar-nav">
         <a class="nav-link" href="/logout">Logout</a>
@@ -66,21 +67,8 @@
                             <th>Role</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <th:block th:object="${user}">
-                            <tr>
-                                <td><a th:text="*{id}" id="id"></a></td>
-                                <td><a th:text="*{firstname}" id="firstn"></a></td>
-                                <td><a th:text="*{lastname}" id="lastn"></a></td>
-                                <td><a th:text="*{age}" id="age"></a></td>
-                                <td><a th:text="*{email}" id="email"></a></td>
-                                <td>
-                                    <th:block th:each="ro : *{roles}">
-                                        <a th:text="${ro.getRole()}"></a>
-                                    </th:block>
-                                </td>
-                            </tr>
-                        </th:block>
+                        <tbody id="userRow">
+
                         </tbody>
                     </table>
                 </div>
@@ -100,6 +88,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
+<script src="/js/user.js"></script>
 </body>
 </html>
