@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+
 public class RestControllerAdm {
 
     private final UserService userService;
@@ -38,10 +39,9 @@ public class RestControllerAdm {
     }
 
     @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<User> createNewUser(@RequestBody User user){
+    public ResponseEntity<?> createNewUser(@RequestBody User user){
         userService.createAndUpdate(user);
-        return new ResponseEntity<>(userService.findUserByEmail(user.getEmail()), HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }
