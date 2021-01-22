@@ -38,7 +38,7 @@ public class RestControllerAdm {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new")
     public ResponseEntity<?> createNewUser(@RequestBody User user){
         userService.createAndUpdate(user);
         return new ResponseEntity<>(HttpStatus.CREATED);

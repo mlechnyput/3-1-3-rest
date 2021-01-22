@@ -39,14 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/")
-                .loginProcessingUrl("/comein").usernameParameter("emailushka").passwordParameter("passwordik")
+                .loginProcessingUrl("/j_login").usernameParameter("j_email").passwordParameter("j_password")
                 .successHandler(new UserSuccessHandler()).permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-        ;
+                .and().csrf().disable();
+
+
         http.userDetailsService(userDetailsService);
     }
 

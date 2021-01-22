@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api")
 public class RestControllerUser {
 
-    @Autowired
     private UserService userService;
 
-    @GetMapping(value="/user")
+    @Autowired
+    public RestControllerUser(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping(value="api/user")
     public ResponseEntity<User> oneUser(Principal principal){
         String email= principal.getName();
         User user = userService.findUserByEmail(email);

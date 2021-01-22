@@ -17,13 +17,13 @@
 <body class="container">
 <div class="row justify-content-md-center">
     <div class="col-sm-3">
-        <form th:action="@{/comein}" method="post">
+        <form th:action="@{/j_login}" method="post">
             <div th:if="${param.error}">
                 Invalid username or password
             </div>
             <h1 class="h3 mb-3 font-weight-normal"><b>Please sign in</b></h1>
-            <input type="email" name="emailushka" id="email1" class="form-control" placeholder="Email">
-            <input type="password" name="passwordik" id="pass1" class="form-control" placeholder="Password">
+            <input type="email" name="j_email" id="email1" class="form-control" placeholder="Email">
+            <input type="password" name="j_password" id="pass1" class="form-control" placeholder="Password">
             </br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
