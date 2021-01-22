@@ -107,7 +107,8 @@
                                     </div>
                                     <div class="form-group text-center font-weight-bold">
                                         <label for="Age_New">Age</label>
-                                        <input type="text" name="age" id="Age_New" class="form-control" placeholder="Age">
+                                        <input type="text" name="age" id="Age_New" class="form-control"
+                                               placeholder="Age">
                                     </div>
                                     <div class="form-group text-center font-weight-bold">
                                         <label for="Email_New">Email</label>
@@ -121,10 +122,11 @@
                                     </div>
                                     </br>
                                     <div class="form-group text-center font-weight-bold">
-                                        <input type="checkbox"  id="Adm_New">
+                                        <input type="checkbox" id="Adm_New">
                                         <label for="butt_New">ADMIN</label>
                                         <input type="checkbox" id="Us_New"> <label>USER</label>
-                                        <button class="btn btn-success" id="butt_New" type="submit"  >Add new user</button>
+                                        <button class="btn btn-success" id="butt_New" type="submit">Add new user
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -137,6 +139,138 @@
     </div>
 </div>
 
+<!-- The Modal Edit -->
+<div class="modal" id="myEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit user</h4>
+                <button type="button" class="close" data-dismiss="modal">×
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form>
+
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="idEdit" class="form-control-label">ID</label>
+                        <input type="text" class="form-control" id="idEdit" value=""
+                               disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="firstnameEdit"
+                               class="form-control-label">Name</label>
+                        <input type="text" class="form-control"
+                               id="firstnameEdit">
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="lastnameEdit" class="form-control-label">Last
+                            name</label>
+                        <input type="text" class="form-control"
+                               id="lastnameEdit">
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="ageEdit" class="form-control-label">Age</label>
+                        <input type="text" class="form-control" id="ageEdit">
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="emailEdit"
+                               class="form-control-label">Email</label>
+                        <input type="email" class="form-control" id="emailEdit">
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label for="passwordEdit" class="form-control-label">Password</label>
+                        <input type="password" class="form-control "
+                               id="passwordEdit">
+                    </div>
+
+                    <div class="form-group text-center font-weight-bold">
+                        <input type="checkbox" name="isadmin">
+                        <label>ADMIN</label>
+                        <input type="checkbox" name="isuser">
+                        <label>USER</label>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-info">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal Delete -->
+<div class="modal" id="myDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete user</h4>
+                <button type="button" class="close" data-dismiss="modal">×
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form>
+
+                    <div class="form-group text-center font-weight-bold">
+                        <label>ID</label>
+                        <input type="text" class="form-control"
+                              id="id_Del" value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>First name</label>
+                        <input type="text" class="form-control"
+                               value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>Last name</label>
+                        <input type="text" class="form-control"
+                               value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>Age</label>
+                        <input type="text" class="form-control"
+                               value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>Email</label>
+                        <input type="email" class="form-control"
+                               value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>Password</label>
+                        <input type="password" class="form-control "
+                               value="" disabled>
+                    </div>
+                    <div class="form-group text-center font-weight-bold">
+                        <label>Role</label>
+                        <input type="text" class="form-control"
+                               value="" disabled>
+                    </div>
+
+                    <div class="form-group text-center font-weight-bold">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-danger" onclick="sendDel()">Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -152,6 +286,7 @@
 
 <script src="/js/all.js"></script>
 <script src="/js/new.js"></script>
+<script src="/js/delete.js"></script>
 
 
 </body>

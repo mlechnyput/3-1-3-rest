@@ -44,4 +44,13 @@ public class RestControllerAdm {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @DeleteMapping(value = "/del/{id}")
+    public ResponseEntity<Long> delUser(@PathVariable Long id){
+        if(userService.findUserById(id) == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            userService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 }

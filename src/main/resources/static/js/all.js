@@ -15,8 +15,10 @@ const renderRow = (users) => {
             '</td><td>' + user.age +
             '</td><td>' + user.email +
             '</td><td>' + strRole +
-            '</td><td>' + "4" +
-            '</td><td>' + "5" +
+            '</td><td>' +
+            '<button type="button" name="Green2" class="btn btn-info" data-toggle="modal" data-target="#myEdit" id="'+ user.id +'">Edit</button>' +
+            '</td><td>' +
+            '<button type="button" name="Red1" class="btn btn-danger" data-toggle="modal" data-target="#myDelete" id="'+ user.id +'">Delete</button>' +
             '</td><tr>'
     })
     tableContent.innerHTML = output

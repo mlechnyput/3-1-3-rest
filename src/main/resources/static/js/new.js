@@ -1,36 +1,46 @@
-const urlNew = "http://localhost:8080/api/new"
+var button=document.getElementById('butt_New')
+button.addEventListener('click', function (e){
+    e.preventDefault()
+    sendPost()
+    document.location.href = 'http://localhost:8080/admin/all'
+})
 
-var admCh=Boolean(false)
-var userCh=Boolean(false)
+async function sendPost() {
+    const urlNew = "http://localhost:8080/api/new"
 
-if ($('#Adm_New').prop("checked")){
-    admCh=true
-}
+    var admCh = Boolean(false)
+    var userCh = Boolean(false)
 
-const userNew = {
-    firstname: 'eew',
-    lastname: 're',
-    age: 76,
-    email: 'ew@m.ru',
-    password: '123',
-   isuser: Boolean(true),
-    isadmin: Boolean(false)
-}
+    if ($('#Adm_New').prop("checked")) {
+        admCh = true
+    }
+    if ($('#Us_New').prop("checked")) {
+        userCh = true
+    }
+    const userNew = {
+        firstname: $('#First_name_New').val(),
+        lastname: $('#Last_name_New').val(),
+        age: $('#Age_New').val(),
+        email: $('#Email_New').val(),
+        password: $('#Password_New').val(),
+        isuser: userCh,
+        isadmin: admCh
+    }
 
-function sendPost(method, url, body = null) {
     const headers = {
         'Content-Type': 'application/json'
     }
-    return fetch(url,{
-        method:method,
-        body:JSON.stringify(body),
-        headers:headers
-    }).then(res=>{
-        return res.json()
-    })
- }
 
-sendPost('POST', urlNew, userNew)
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err))
+    try {
+        const response = await fetch(urlNew, {
+            method: 'POST',
+            body: JSON.stringify(userNew),
+            headers: headers
+        })
+        const json=await response.json()
+        console.log('Успех: ', JSON.stringify(json))
+    }catch (error){
+        console.error('Ошибка: ',error)
+    }
+}
 
