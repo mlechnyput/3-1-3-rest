@@ -52,9 +52,10 @@ public class RestControllerAdm {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PatchMapping(value = "/edit")
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
+    @PatchMapping(value = "/edit/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable Long id) {
+        user.setId(id);
         userService.createAndUpdate(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

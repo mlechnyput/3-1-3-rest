@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "w_user")
-public class User implements UserDetails {
+public class User implements UserDetails, Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -192,5 +192,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return(int) (this.id-o.id);
     }
 }
