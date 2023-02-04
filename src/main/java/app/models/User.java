@@ -1,5 +1,7 @@
 package app.models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,10 +32,11 @@ public class User implements UserDetails, Comparable<User>{
     @Column
     private String password;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(name = "w_user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Fetch(FetchMode.SUBSELECT)
     private Set<Role> roles;
 
     @Transient
